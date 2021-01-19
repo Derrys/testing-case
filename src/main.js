@@ -3,6 +3,15 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import Element from 'element-ui'
+import './styles/element-variables.scss'
+
+import './icons' // icon
+
+import '@/styles/index.scss' // global css
+
+Vue.use(Element)
+
 Vue.config.productionTip = false
 
 new Vue({
