@@ -3,7 +3,9 @@
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" />
+          <i v-if="icon && icon.includes('el-icon')" :class="[icon, 'sub-el-icon']" />
+          <svg-icon v-if="icon && !icon.includes('el-icon')" :icon-class="icon"/>
+          <span v-if="onlyOneChild.meta.title" slot='title'>{{ onlyOneChild.meta.title }}</span>
         </el-menu-item>
       </app-link>
     </template>
@@ -26,7 +28,6 @@
 <script>
 import path from 'path'
 import { isExternal } from '@/utils/validate'
-// import Item from './Item'
 import AppLink from './Link'
 import FixiOSBug from './FixiOSBug'
 
@@ -54,6 +55,12 @@ export default {
     // TODO: refactor with render function
     this.onlyOneChild = null
     return {}
+  },
+  computed: {
+    icon() {
+      return this.onlyOneChild.meta.icon||(this.item.meta && this.item.meta.icon)
+    },
+
   },
   methods: {
     hasOneShowingChild(children = [], parent) {
@@ -92,3 +99,10 @@ export default {
   }
 }
 </script>
+<style scoped>
+.sub-el-icon {
+  color: currentColor;
+  width: 1em;
+  height: 1em;
+}
+</style>
