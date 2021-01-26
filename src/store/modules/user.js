@@ -81,10 +81,6 @@ const actions = {
         removeToken()
         resetRouter()
 
-        // reset visited views and cached views
-        // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
-        dispatch('tagsView/delAllViews', null, { root: true })
-
         resolve()
       }).catch(error => {
         reject(error)
@@ -118,8 +114,6 @@ const actions = {
     // dynamically add accessible routes
     // router.addRoutes(accessRoutes)
 
-    // reset visited views and cached views
-    dispatch('tagsView/delAllViews', null, { root: true })
   }
 }
 

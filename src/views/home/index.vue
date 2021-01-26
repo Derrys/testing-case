@@ -1,7 +1,13 @@
 <template>
   <div class="dashboard-editor-container">
-    <panel-group @handleSetLineChartData="handleSetLineChartData" />
-
+    <el-row :gutter="32">
+      <el-col :xs="24" :sm="24" :lg="18">
+        今日
+      </el-col>
+      <el-col :xs="24" :sm="24" :lg="6">
+         <panel-group @handleSetLineChartData="handleSetLineChartData" />
+      </el-col>
+    </el-row>
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
       <line-chart :chart-data="lineChartData" />
     </el-row>
@@ -53,7 +59,7 @@ const lineChartData = {
 }
 
 export default {
-  name: 'DashboardAdmin',
+  name: 'Home',
   components: {
     PanelGroup,
     LineChart,
