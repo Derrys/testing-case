@@ -1,11 +1,17 @@
 <template>
   <div class="dashboard-editor-container">
     <el-row :gutter="32">
-      <el-col :xs="24" :sm="24" :lg="18">
-        今日
-      </el-col>
-      <el-col :xs="24" :sm="24" :lg="6">
-         <panel-group @handleSetLineChartData="handleSetLineChartData" />
+      <el-col :xs="24" :sm="24" :lg="16">
+        <div class="title">
+          今日,
+        </div>
+        <div class="date-content">
+          {{ date + welcomeText }}
+        </div>
+        <iframe width="400" height="25" frameborder="0" scrolling="no" hspace="0" src="https://i.tianqi.com/?c=code&id=40"></iframe>
+        </el-col>
+      <el-col :xs="24" :sm="24" :lg="8">
+         <panel-group/>
       </el-col>
     </el-row>
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
@@ -69,13 +75,21 @@ export default {
   },
   data() {
     return {
-      lineChartData: lineChartData.newVisitis
+      lineChartData: lineChartData.newVisitis,
+      date: this.getDate(),
+      welcomeText: ', 欢迎您使用档案控制台'
     }
   },
   methods: {
-    handleSetLineChartData(type) {
-      this.lineChartData = lineChartData[type]
-    }
+    getDate() {
+      const weekDayLabels = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");
+      const now = new Date();
+      const year=now.getFullYear();
+      const month=now.getMonth()+1;
+      const day=now.getDate()
+      const currentime = year+'年'+month+'月'+day+'日'+weekDayLabels[now.getDay()]
+      return currentime
+    },
   }
 }
 </script>
@@ -104,5 +118,16 @@ export default {
   .chart-wrapper {
     padding: 8px;
   }
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.date-content {
+  margin: 12px 0 9px 0;
+  font-size: 14px;
+  font-family: Arial;
 }
 </style>
