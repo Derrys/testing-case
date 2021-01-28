@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="32" class="panel-group">
-    <el-col :xs="24" :sm="12" :lg="8" class="card-panel-col">
+    <el-col :xs="24" :sm="8" :md="8" :lg="8" class="card-panel-col">
       <el-card shadow="hover" class="card-wrap" @click.native="routeTo('node')">
           <div class="icon-wrap">
             <i class="el-icon-crop" />
@@ -16,8 +16,8 @@
           </div>
       </el-card>
     </el-col>
-    <el-col :xs="24" :sm="12" :lg="8" class="card-panel-col">
-      <el-card shadow="hover" class="card-wrap" @click="routeTo('case')">
+    <el-col :xs="24" :sm="8" :md="8" :lg="8" class="card-panel-col">
+      <el-card shadow="hover" class="card-wrap" @click.native="routeTo('case')">
           <div class="icon-wrap">
             <i class="el-icon-tickets" />
           </div>
@@ -32,8 +32,8 @@
           </div>
       </el-card>
     </el-col>
-    <el-col :xs="24" :sm="12" :lg="8" class="card-panel-col">
-      <el-card shadow="hover" class="card-wrap" @click="routeTo('result')">
+    <el-col :xs="24" :sm="8" :md="8" :lg="8" class="card-panel-col">
+      <el-card shadow="hover" class="card-wrap" @click.native="routeTo('result')">
           <div class="icon-wrap">
            <i class="el-icon-document" />
           </div>
@@ -60,20 +60,7 @@ export default {
   },
   methods: {
     routeTo(type) {
-      console.log(type)
-      switch(type) {
-        case 'node':
-          this.$router.push('/node/index')
-          break;
-        case 'case':
-          this.$router.push('/case/index')
-          break;
-        case 'result':
-          this.$router.push('/result/index')
-          break;
-        default: 
-          break;
-      }
+      this.$router.push(`/${type}/index`)
     },
   },
 };
@@ -82,6 +69,7 @@ export default {
 <style lang="scss" scoped>
 .panel-group {
   .card-panel-col {
+    min-width: 180px;
     margin-bottom: 32px;
 
     .icon-wrap {

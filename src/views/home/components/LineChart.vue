@@ -20,34 +20,21 @@ export default {
     },
     height: {
       type: String,
-      default: '350px'
+      default: '300px'
     },
     autoResize: {
       type: Boolean,
       default: true
     },
-    chartData: {
-      type: Object,
-      required: true
-    }
   },
   data() {
     return {
-      chart: null
-    }
-  },
-  watch: {
-    chartData: {
-      deep: true,
-      handler(val) {
-        this.setOptions(val)
-      }
+      chart: null,
+      actualData: [820, 932, 901, 934, 1290, 1330, 1320]
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      this.initChart()
-    })
+    this.initChart()
   },
   beforeDestroy() {
     if (!this.chart) {
@@ -59,16 +46,13 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      this.setOptions(this.chartData)
+      this.setOptions()
     },
-    setOptions({ expectedData, actualData } = {}) {
+    setOptions() {
       this.chart.setOption({
         xAxis: {
           data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          boundaryGap: false,
-          axisTick: {
-            show: false
-          }
+          type: 'category'
         },
         grid: {
           left: 10,
@@ -89,25 +73,7 @@ export default {
             show: false
           }
         },
-        legend: {
-          data: ['expected', 'actual']
-        },
-        series: [{
-          name: 'expected', itemStyle: {
-            normal: {
-              color: '#FF005A',
-              lineStyle: {
-                color: '#FF005A',
-                width: 2
-              }
-            }
-          },
-          smooth: true,
-          type: 'line',
-          data: expectedData,
-          animationDuration: 2800,
-          animationEasing: 'cubicInOut'
-        },
+        series: [
         {
           name: 'actual',
           smooth: true,
@@ -124,7 +90,7 @@ export default {
               }
             }
           },
-          data: actualData,
+          data: this.actualData,
           animationDuration: 2800,
           animationEasing: 'quadraticOut'
         }]
