@@ -30,50 +30,49 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column align="center" label="ID" width="65">
+          <el-table-column label="序号" width="65">
             <template slot-scope="{ row }">
               <span>{{ row.id }}</span>
             </template>
           </el-table-column>
 
-          <el-table-column width="180px" align="center" label="Date">
+          <el-table-column label="模块名">
             <template slot-scope="{ row }">
               <span>{{
-                row.timestamp | parseTime("{y}-{m}-{d} {h}:{i}")
+                row.moduleName
               }}</span>
             </template>
           </el-table-column>
 
-          <el-table-column min-width="300px" label="Title">
-            <template slot-scope="{ row }">
-              <span>{{ row.title }}</span>
-            </template>
-          </el-table-column>
-
-          <el-table-column width="110px" align="center" label="Author">
+          <el-table-column width="150px" label="作者">
             <template slot-scope="{ row }">
               <span>{{ row.author }}</span>
             </template>
           </el-table-column>
 
-          <el-table-column width="100px" label="Importance">
+          <el-table-column width="150px" label="上次执行人">
             <template slot-scope="{ row }">
-              <svg-icon
-                v-for="n in +row.importance"
-                :key="n"
-                icon-class="star"
-                class="icon-star"
-              />
+              <span>{{ row.lastName }}</span>
             </template>
           </el-table-column>
 
-          <el-table-column align="center" label="Readings" width="95">
+          <el-table-column width="150px" label="创建时间">
             <template slot-scope="{ row }">
-              <span>{{ row.pageviews }}</span>
+              <span>{{
+                row.createdTime | parseTime("{y}-{m}-{d} {h}:{i}")
+              }}</span>
             </template>
           </el-table-column>
 
-          <el-table-column class-name="status-col" label="Status" width="110">
+          <el-table-column label="执行时间" width="150">
+            <template slot-scope="{ row }">
+              <span>{{
+                row.latestTime | parseTime("{y}-{m}-{d} {h}:{i}")
+              }}</span>
+            </template>
+          </el-table-column>
+
+          <el-table-column  label="模块状态" width="100">
             <template slot-scope="{ row }">
               <el-tag :type="row.status | statusFilter">
                 {{ row.status }}
@@ -81,7 +80,7 @@
             </template>
           </el-table-column>
 
-          <el-table-column align="center" label="Drag" width="80">
+          <el-table-column label="操作" width="80">
             <template slot-scope="{}">
               <svg-icon class="drag-handler" icon-class="drag" />
             </template>
@@ -93,15 +92,52 @@
 </template>
 
 <script>
+import Sortable from 'sortablejs'
 import ProjectCard from "@/components/ProjectCard";
 
 export default {
   name: "Case",
   components: { ProjectCard },
+  filters: {
+    statusFilter(status) {
+      const statusMap = {
+        success: 'success',
+        notStart: 'warning',
+        failed: 'danger'
+      }
+      return statusMap[status]
+    }
+  },
   data() {
     return {
       searchKey: "",
+      list: [],
+      total: null,
+      listLoading: true,
+      listQuery: {
+        page: 1,
+        limit: 10
+      },
+      sortable: null,
+      oldList: [],
+      newList: []
     };
+  },
+  created() {
+    console.log('圈圈是个小可爱！')
+    setTimeout(() => {
+      this.list = [{
+        id: 1,
+        moduleName: 'dhj12',
+        author: 'dhj12',
+        lastName: '点点是个小可爱！',
+        createdTime: 1612963806,
+        latestTime: 1612963231,
+        status: 'success'
+      }]
+      this.listLoading = false
+      this.setSort()
+    }, 2000)
   },
   methods: {
     addProject() {
@@ -113,6 +149,23 @@ export default {
     operate(data) {
       console.log("点击操作: ", data);
     },
+    setSort() {
+      const el = this.$refs.dragTable.$el.querySelectorAll('.el-table__body-wrapper > table > tbody')[0]
+      this.sortable = Sortable.create(el, {
+        ghostClass: 'sortable-ghost', // Class name for the drop placeholder,
+        setData: function(dataTransfer) {
+          dataTransfer.setData('Text', '')
+        },
+        onEnd: evt => {
+          const targetRow = this.list.splice(evt.oldIndex, 1)[0]
+          this.list.splice(evt.newIndex, 0, targetRow)
+
+          // for show the changes, you can delete in you code
+          const tempIndex = this.newList.splice(evt.oldIndex, 1)[0]
+          this.newList.splice(evt.newIndex, 0, tempIndex)
+        }
+      })
+    }
   },
 };
 </script>
