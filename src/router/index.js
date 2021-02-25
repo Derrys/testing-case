@@ -59,7 +59,17 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/case/index'),
         name: 'Case',
-        meta: { title: '用例管理', icon: 'el-icon-tickets'}
+        meta: { title: '用例管理', icon: 'el-icon-tickets'},
+        children: [
+           {
+            path: 'case-detail/:caseId',
+            component: () => import('@/views/case/case-detail/index.vue'),
+            name: 'CaseDetail',
+            hidden: true,
+            props: true,
+            meta: { title: '用例详情' }
+          }
+        ]
       }
     ]
   },

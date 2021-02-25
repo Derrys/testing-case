@@ -74,6 +74,12 @@ export default {
         }
       })
 
+      // 解决用例详情在sidebar出现的问题
+      if (this.onlyOneChild.name === 'Case') {
+        this.onlyOneChild.noShowingChildren = true
+        return true
+      }
+ 
       // When there is only one child router, the child router is displayed by default
       if (showingChildren.length === 1) {
         return true

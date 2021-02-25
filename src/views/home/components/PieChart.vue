@@ -50,9 +50,7 @@ export default {
           formatter: '{a} <br/>{b} : {c} ({d}%)'
         },
         legend: {
-          left: 'left',
-          bottom: 'center',
-          orient: 'vertical',
+          top: 'bottom',
           data: ['已完成', '待处理', '已退回']
         },
         series: [
