@@ -15,6 +15,8 @@ const name = defaultSettings.title || 'Testing Case' // page title
 // port = 8888 npm run dev OR npm run dev --port = 8888
 const port = process.env.port || process.env.npm_config_port || 8888 // dev port
 
+const ENV = process.env.NODE_ENV;
+
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
   /**
@@ -24,10 +26,10 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: '/',
+  publicPath: ENV === 'development' ? '/' : '/testing-case/',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  lintOnSave: ENV === 'development',
   productionSourceMap: false,
   devServer: {
     port: port,
@@ -81,16 +83,8 @@ module.exports = {
       .end()
 
     config
-      .when(process.env.NODE_ENV !== 'development',
+      .when(ENV !== 'development',
         config => {
-          config
-            .plugin('ScriptExtHtmlWebpackPlugin')
-            .after('html')
-            .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
-              inline: /runtime\..*\.js$/
-            }])
-            .end()
           config
             .optimization.splitChunks({
               chunks: 'all',

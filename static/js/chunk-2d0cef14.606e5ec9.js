@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0cef14"],{6235:function(e,n,t){"use strict";t.r(n);var a=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[e._v(" 用户管理 ")])},c=[],r={name:"UserManagement",components:{},data(){return{}},methods:{}},s=r,o=t("2877"),u=Object(o["a"])(s,a,c,!1,null,"70bd10b2",null);n["default"]=u.exports}}]);

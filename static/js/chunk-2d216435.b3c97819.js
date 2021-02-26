@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d216435"],{c25e:function(e,n,t){"use strict";t.r(n);var c=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[e._v(" 个人中心 ")])},r=[],a={name:"UserCenter",components:{},data(){return{}},methods:{}},s=a,o=t("2877"),u=Object(o["a"])(s,c,r,!1,null,"7f07a8c8",null);n["default"]=u.exports}}]);
