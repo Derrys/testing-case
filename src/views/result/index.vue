@@ -261,6 +261,7 @@ export default {
     },
     operate(data) {
       console.log("点击操作: ", data);
+      this.$router.push(`/result/index/result-detail/${data.item.id}`)
     },
   },
 };

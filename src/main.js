@@ -16,6 +16,8 @@ import 'xe-utils'
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/style.css'
 
+import './main.css'
+
 
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])

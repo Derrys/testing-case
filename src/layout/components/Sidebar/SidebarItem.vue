@@ -75,7 +75,7 @@ export default {
       })
 
       // 解决用例详情在sidebar出现的问题
-      if (this.onlyOneChild.name === 'Case') {
+      if (this.onlyOneChild.name === 'Case' || this.onlyOneChild.name === 'Result') {
         this.onlyOneChild.noShowingChildren = true
         return true
       }

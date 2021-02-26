@@ -81,7 +81,17 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/result/index'),
         name: 'Result',
-        meta: { title: '结果管理', icon: 'el-icon-document'}
+        meta: { title: '结果管理', icon: 'el-icon-document'},
+        children: [
+           {
+            path: 'result-detail/:resultId',
+            component: () => import('@/views/result/result-detail/index.vue'),
+            name: 'ResultDetail',
+            hidden: true,
+            props: true,
+            meta: { title: '结果详情' }
+          }
+        ]
       }
     ]
   },
