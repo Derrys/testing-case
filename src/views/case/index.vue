@@ -28,9 +28,7 @@
           v-loading="listLoading"
           :data="list"
           row-key="id"
-          border
           fit
-          highlight-current-row
           style="width: 100%"
         >
           <el-table-column label="序号" width="65">
@@ -348,10 +346,16 @@ export default {
 }
 
 .el-main {
+  height: calc(100vh - 110px);
   background-color: #f0f2f5;
 
   .module-card {
+    height: calc(100vh - 385px);
     margin-top: 32px;
+    & ::v-deep .el-card__body {
+      height: calc(100vh - 458px);
+      overflow-y: scroll;
+    }
     .module-header {
       display: flex;
       align-items: center;

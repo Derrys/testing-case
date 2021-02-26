@@ -21,7 +21,7 @@
       <div class="card-header">
         <img width="100px" height="60px" :src="item.img" />
         <div class="header-text">
-          <div class="title">{{ item.name }}</div>
+          <div :title="item.name" class="title">{{ item.name }}</div>
           <span :title="item.description">{{ item.description }}</span>
         </div>
       </div>
@@ -33,27 +33,37 @@
         <span>用例数:</span>
         {{ item.caseNum }}
       </div>
-      <div class="card-footer">
-        <icon-button
-          icon="el-icon-edit"
-          tips="编辑"
-          @click.native="operate('edit', item)"
-        />
-        <icon-button
-          icon="el-icon-delete"
-          tips="删除"
-          @click.native="operate('delete', item)"
-        />
-        <icon-button
-          icon="el-icon-s-promotion"
-          tips="运行"
-          @click.native="operate('run', item)"
-        />
-        <icon-button
-          icon="el-icon-edit-outline"
-          tips="编辑详细用例"
-          @click.native="operate('editDetail', item)"
-        />
+      <div :class="['card-footer', {'card-result-footer': type === 'result'}]">
+        <div v-if="type === 'result'">
+          <icon-button
+            icon="el-icon-view"
+            tips="查看详细结果"
+            style="margin-left: 15px"
+            @click.native="operate('view', item)"
+          />
+        </div>
+        <template v-else>
+          <icon-button
+            icon="el-icon-edit"
+            tips="编辑"
+            @click.native="operate('edit', item)"
+          />
+          <icon-button
+            icon="el-icon-delete"
+            tips="删除"
+            @click.native="operate('delete', item)"
+          />
+          <icon-button
+            icon="el-icon-s-promotion"
+            tips="运行"
+            @click.native="operate('run', item)"
+          />
+          <icon-button
+            icon="el-icon-edit-outline"
+            tips="编辑详细用例"
+            @click.native="operate('editDetail', item)"
+          />
+        </template>
       </div>
     </el-card>
   </div>
@@ -69,6 +79,10 @@ export default {
     showAdd: {
       type: Boolean,
       default: true,
+    },
+    type: {
+      type: String,
+      default: "case",
     },
   },
   data() {
@@ -233,6 +247,7 @@ export default {
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           line-height: 16px;
+          white-space: normal;
         }
       }
     }
@@ -255,6 +270,10 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-around;
+    }
+
+    .card-result-footer {
+      justify-content: unset;
     }
   }
 }

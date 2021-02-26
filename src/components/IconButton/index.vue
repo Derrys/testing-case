@@ -1,8 +1,8 @@
 <template>
 <el-tooltip v-if="tips" :content="tips" placement="top-start">
-  <i :class="[icon, 'icon-item']" />
+  <i :class="[icon, 'icon', `icon-${size}`]" />
 </el-tooltip>
-<i v-else :class="[icon, 'icon-item']" />
+<i v-else :class="[icon, 'icon', `icon-${size}`]" />
 </template>
 
 <script>
@@ -16,6 +16,10 @@ export default {
     tips: {
       type: String,
       default: ''
+    },
+    size: {
+      type: String,
+      default: 'normal'
     }
   },
   data() {
@@ -25,9 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.icon-item {
-  padding: 8px;
-  font-size: 24px;
+.icon {
   color: #5a5e66;
   cursor: pointer;
   transition: background 0.3s;
@@ -35,5 +37,13 @@ export default {
   &:hover {
     background: rgba(0, 0, 0, 0.025);
   }
+}
+.icon-normal {
+  padding: 8px;
+  font-size: 24px;
+}
+.icon-small {
+  padding: 8px;
+  font-size: 16px;
 }
 </style>
