@@ -347,6 +347,7 @@ export default {
 
 .el-main {
   height: calc(100vh - 110px);
+  overflow: hidden;
   background-color: #f0f2f5;
 
   .module-card {
@@ -354,7 +355,7 @@ export default {
     margin-top: 32px;
     & ::v-deep .el-card__body {
       height: calc(100vh - 458px);
-      overflow-y: scroll;
+      overflow-y: auto;
     }
     .module-header {
       display: flex;

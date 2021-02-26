@@ -275,13 +275,14 @@ export default {
 .el-main {
   height: calc(100vh - 110px);
   background-color: #f0f2f5;
+  overflow: hidden;
 
   .module-card {
     height: calc(100vh - 385px);
     margin-top: 32px;
     & ::v-deep .el-card__body {
       height: calc(100vh - 458px);
-      overflow-y: scroll;
+      overflow-y: auto;
     }
     .module-header {
       display: flex;
