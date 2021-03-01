@@ -29,8 +29,8 @@
       </el-input>
     </el-header>
     <el-main>
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
+      <el-card>
+        <div slot="header">
           <span>{{ caseName }}</span>
         </div>
         <el-tabs @tab-click="tabsClick" v-model="activeIndex">
