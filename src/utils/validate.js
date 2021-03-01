@@ -15,6 +15,7 @@ export function isExternal(path) {
  * @returns {Boolean}
  */
 export function validUsername(str) {
+  // 你本身需求好像是要输入QQ号，所以这里的验证逻辑可以放到前端来先做了
   const valid_map = ['admin', 'editor']
   return valid_map.indexOf(str.trim()) >= 0
 }
