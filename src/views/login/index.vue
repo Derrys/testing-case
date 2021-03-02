@@ -80,8 +80,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: '873403874',
+        password: '123456'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur'}],
@@ -144,7 +144,8 @@ export default {
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
               this.loading = false
             })
-            .catch(() => {
+            .catch((e) => {
+              console.log(e)
               this.loading = false
             })
         } else {

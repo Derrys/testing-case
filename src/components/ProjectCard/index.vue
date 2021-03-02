@@ -34,6 +34,7 @@
         {{ item.caseNum }}
       </div>
       <div :class="['card-footer', {'card-result-footer': type === 'result'}]">
+        <!-- 这里你去根据 type=node 去判断下节点管理里的操作按钮 -->
         <div v-if="type === 'result'">
           <icon-button
             icon="el-icon-view"
