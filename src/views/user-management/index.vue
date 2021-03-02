@@ -27,7 +27,7 @@
               title="账号"
               width="200"
             ></vxe-table-column>
-            <vxe-table-column field="name" title="姓名"></vxe-table-column>
+            <vxe-table-column field="name" title="姓名" min-width="150"></vxe-table-column>
             <vxe-table-column
               field="department"
               title="部门"

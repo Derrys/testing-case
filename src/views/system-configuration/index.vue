@@ -32,7 +32,7 @@
           </el-col>
           <el-col :sm="12" :xl="8">
             <el-form-item label="平台名字: " prop="name">
-              <el-input v-model="platForm.name" />
+              <el-input v-model="platForm.name" placeholder="请输入平台名字..."/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -160,7 +160,7 @@ export default {
 <style lang="scss" scoped>
 .el-main {
   height: calc(100vh - 50px);
-  overflow: hidden;
+  overflow: auto;
   background-color: #f0f2f5;
 
   .system-card {
