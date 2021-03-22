@@ -1,8 +1,8 @@
 {
-  "name": "{{ name }}",
+  "name": "testing-case",
   "version": "0.1.0",
-  "description": "{{ description }}",
-  "author": "{{author}}",
+  "description": "testing case for Testing",
+  "author": "derry.song",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
